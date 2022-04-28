@@ -18,6 +18,10 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    buildFeatures {
+        viewBinding true
+    }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -34,7 +38,9 @@ android {
 }
 
 dependencies {
+    def nav_version = "2.4.2"
 
+    // Android
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.4.1'
     implementation 'com.google.android.material:material:1.5.0'
@@ -43,6 +49,13 @@ dependencies {
     // Inject
     implementation "com.google.dagger:hilt-android:$hilt_version"
     kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
+
+    // Navigation
+    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+
+    // UI
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
 
     // Test (Unit)
     testImplementation 'junit:junit:4.13.2'
