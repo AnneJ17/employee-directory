@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="@dimen/dimensions_spacing_large"
+    android:layout_marginTop="@dimen/dimensions_spacing_large">
+
+    <ImageView
+        android:id="@+id/listItemIconLeft"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@id/listItemSubtitleText"
+        app:layout_constraintDimensionRatio="H,1:2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/listItemTitleText"
+        tools:src="@drawable/block_white" />
+
+    <TextView
+        android:id="@+id/listItemTitleText"
+        style="@style/TextAppearance.AppCompat.Title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dimensions_spacing_medium"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/listItemIconLeft"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Title" />
+
+    <TextView
+        android:id="@+id/listItemSubtitleText"
+        style="@style/TextAppearance.AppCompat.Body1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimensions_spacing_xx_small"
+        android:textColor="@color/list_item_default_secondary_label_text_color"
+        app:layout_constraintBottom_toBottomOf="@id/listItemIconLeft"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/listItemTitleText"
+        app:layout_constraintTop_toBottomOf="@id/listItemTitleText"
+        tools:text="Subtitle" />
+
+    <com.google.android.material.divider.MaterialDivider
+        android:id="@+id/listItemDivider"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="@dimen/dimensions_spacing_medium"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/listItemSubtitleText" />
+</androidx.constraintlayout.widget.ConstraintLayout>

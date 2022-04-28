@@ -6,4 +6,5 @@
     <color name="background">#2B292B</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="list_item_default_secondary_label_text_color">#666666</color>
 </resources>
