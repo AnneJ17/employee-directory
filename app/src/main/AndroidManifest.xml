@@ -29,6 +29,9 @@
             <meta-data
                 android:name="com.example.employeedirectoryapp.startup.CoilInitializer"
                 android:value="androidx.startup" />
+            <meta-data
+                android:name="com.example.employeedirectoryapp.startup.LogcatInitializer"
+                android:value="androidx.startup" />
         </provider>
     </application>
 
