@@ -11,6 +11,7 @@
         android:id="@+id/listItemIconLeft"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:contentDescription="@string/employee_image"
         app:layout_constraintBottom_toBottomOf="@id/listItemSubtitleText"
         app:layout_constraintDimensionRatio="H,1:2"
         app:layout_constraintStart_toStartOf="parent"
