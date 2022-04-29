@@ -70,6 +70,7 @@ dependencies {
 
     // Kotlin
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.1'
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.5.0-beta01'
     implementation 'com.squareup.logcat:logcat:0.1'
 
     // Network

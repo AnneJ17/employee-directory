@@ -15,9 +15,10 @@ class EmployeeListAdapter : ListAdapter<Employee, EmployeeListAdapter.EmployeeVi
     DIFF_CALLBACK
 ) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EmployeeViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_view_list, parent, false)
-        return EmployeeViewHolder(view)
+        return EmployeeViewHolder(
+            LayoutInflater.from(parent.context)
+                .inflate(R.layout.item_view_list, parent, false)
+        )
     }
 
     override fun onBindViewHolder(holder: EmployeeViewHolder, position: Int) {
@@ -25,7 +26,9 @@ class EmployeeListAdapter : ListAdapter<Employee, EmployeeListAdapter.EmployeeVi
         holder.binding.apply {
             listItemTitleText.text = item.full_name
             listItemSubtitleText.text = item.team
-            listItemIconLeft.load(item.photo_url_small)
+            listItemIconLeft.load(item.photo_url_small) {
+                placeholder(R.drawable.block_white)
+            }
         }
     }
 

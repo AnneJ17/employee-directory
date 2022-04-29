@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Employee Directory App</string>
     <string name="employee_image">Profile image of employee</string>
+    <string name="empty_list_description">No Employees list yet!</string>
 </resources>

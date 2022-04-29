@@ -14,9 +14,9 @@ import com.example.employeedirectoryapp.util.onSuccess
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
-import logcat.logcat
 import javax.inject.Inject
 
 @HiltViewModel
@@ -28,6 +28,9 @@ class EmployeeViewModel
 
     private val _employeeList = MutableStateFlow<List<Employee>>(emptyList())
     val employeesFlow: Flow<List<Employee>> = _employeeList
+
+    private val _error = MutableSharedFlow<String>()
+    val errorFlow: Flow<String> = _error
 
     private val _swipeRefreshActive: MutableLiveData<Boolean> = MutableLiveData<Boolean>(false)
     val swipeRefreshActive: LiveData<Boolean> = _swipeRefreshActive
@@ -45,9 +48,9 @@ class EmployeeViewModel
         response.onSuccess { list ->
             _employeeList.value = list.employees
         }.onError { code, message ->
-            logcat { "$code, $message" }
+            _error.emit("$code, $message")
         }.onException { t ->
-            logcat { "$t" }
+            _error.emit("${t.message}")
         }
     }
 }

@@ -4,15 +4,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.employeedirectoryapp.R
 import com.example.employeedirectoryapp.databinding.FragmentEmployeeListBinding
+import com.example.employeedirectoryapp.model.Employee
 import com.example.employeedirectoryapp.ui.adapter.EmployeeListAdapter
+import com.example.employeedirectoryapp.util.observeWithLifecycle
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class EmployeeListFragment : Fragment(R.layout.fragment_employee_list) {
@@ -49,14 +50,27 @@ class EmployeeListFragment : Fragment(R.layout.fragment_employee_list) {
 
 
     private fun setupViewModelObservers() {
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.employeesFlow.collect { employees ->
-                listAdapter.submitList(employees)
-            }
+        viewModel.employeesFlow.observeWithLifecycle(viewLifecycleOwner) { employees ->
+            handleView(employees)
         }
 
         viewModel.swipeRefreshActive.observe(viewLifecycleOwner) { refreshing ->
             binding.swipeRefresh.isRefreshing = refreshing
+        }
+
+        viewModel.errorFlow.observeWithLifecycle(viewLifecycleOwner) { message ->
+            Toast.makeText(context, message, Toast.LENGTH_LONG).show()
+        }
+    }
+
+    private fun handleView(employees: List<Employee>) {
+        if (employees.isEmpty()) {
+            binding.employeeListRecyclerView.visibility = View.GONE
+            binding.emptyView.root.visibility = View.VISIBLE
+        } else {
+            binding.employeeListRecyclerView.visibility = View.VISIBLE
+            binding.emptyView.root.visibility = View.GONE
+            listAdapter.submitList(employees)
         }
     }
 
