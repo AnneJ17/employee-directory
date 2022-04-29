@@ -1,6 +1,7 @@
 package com.example.employeedirectoryapp.inject
 
 import com.example.employeedirectoryapp.network.EmployeeService
+import com.example.employeedirectoryapp.network.HttpRequestInterceptor
 import com.example.employeedirectoryapp.network.retrofit.NetworkResultCallAdapterFactory
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -16,6 +17,14 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
+
+    @Provides
+    @Singleton
+    fun provideOkHttpClient(): OkHttpClient {
+        return OkHttpClient.Builder()
+            .addInterceptor(HttpRequestInterceptor())
+            .build()
+    }
 
     @Provides
     @Singleton
