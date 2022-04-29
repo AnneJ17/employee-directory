@@ -6,6 +6,6 @@
 
     <fragment
         android:id="@+id/employeeListFragment"
-        android:name="com.example.employeedirectoryapp.ui.EmployeeListFragment"
+        android:name="com.example.employeedirectoryapp.ui.employee.EmployeeListFragment"
         android:label="Employees" />
 </navigation>

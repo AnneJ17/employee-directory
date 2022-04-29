@@ -1,11 +1,13 @@
-package com.example.employeedirectoryapp.ui
+package com.example.employeedirectoryapp.ui.adapter
 
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import com.example.employeedirectoryapp.R
 import com.example.employeedirectoryapp.databinding.ItemViewListBinding
 import com.example.employeedirectoryapp.model.Employee
 
@@ -13,7 +15,9 @@ class EmployeeListAdapter : ListAdapter<Employee, EmployeeListAdapter.EmployeeVi
     DIFF_CALLBACK
 ) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EmployeeViewHolder {
-        return EmployeeViewHolder(parent)
+        val view = LayoutInflater.from(parent.context)
+            .inflate(R.layout.item_view_list, parent, false)
+        return EmployeeViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: EmployeeViewHolder, position: Int) {
