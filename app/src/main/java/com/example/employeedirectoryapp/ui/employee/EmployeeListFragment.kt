@@ -10,7 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.employeedirectoryapp.R
 import com.example.employeedirectoryapp.databinding.FragmentEmployeeListBinding
-import com.example.employeedirectoryapp.model.Employee
+import com.example.employeedirectoryapp.model.EmployeeGroupedItem
 import com.example.employeedirectoryapp.ui.adapter.EmployeeListAdapter
 import com.example.employeedirectoryapp.util.observeWithLifecycle
 import dagger.hilt.android.AndroidEntryPoint
@@ -63,14 +63,15 @@ class EmployeeListFragment : Fragment(R.layout.fragment_employee_list) {
         }
     }
 
-    private fun handleView(employees: List<Employee>) {
+    private fun handleView(employees: List<EmployeeGroupedItem.Employee>) {
         if (employees.isEmpty()) {
             binding.employeeListRecyclerView.visibility = View.GONE
             binding.emptyView.root.visibility = View.VISIBLE
         } else {
+            val groupedList = viewModel.fetchEmployeeGroupedByTeam(employees)
             binding.employeeListRecyclerView.visibility = View.VISIBLE
             binding.emptyView.root.visibility = View.GONE
-            listAdapter.submitList(employees)
+            listAdapter.submitList(groupedList)
         }
     }
 

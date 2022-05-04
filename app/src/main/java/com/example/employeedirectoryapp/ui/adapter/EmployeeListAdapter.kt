@@ -12,10 +12,9 @@ import com.example.employeedirectoryapp.databinding.ItemViewHeaderBinding
 import com.example.employeedirectoryapp.databinding.ItemViewListBinding
 import com.example.employeedirectoryapp.model.EmployeeGroupedItem
 
-class EmployeeListAdapter :
-    ListAdapter<EmployeeGroupedItem, RecyclerView.ViewHolder>(
-        DIFF_CALLBACK
-    ) {
+class EmployeeListAdapter : ListAdapter<EmployeeGroupedItem, RecyclerView.ViewHolder>(
+    DIFF_CALLBACK
+) {
 
     override fun getItemViewType(position: Int): Int {
         return when (val item = getItem(position)) {
@@ -73,8 +72,8 @@ class EmployeeListAdapter :
     ) : RecyclerView.ViewHolder(rootView)
 
     companion object {
-        private val VIEW_TYPE_HEADER = R.layout.item_view_header
-        private val VIEW_TYPE_EMPLOYEE = R.layout.item_view_list
+        private const val VIEW_TYPE_HEADER = R.layout.item_view_header
+        private const val VIEW_TYPE_EMPLOYEE = R.layout.item_view_list
 
         private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<EmployeeGroupedItem>() {
             override fun areItemsTheSame(
